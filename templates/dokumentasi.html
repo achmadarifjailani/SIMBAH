@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center text-simbah mb-4">Dokumentasi dengan Suku Dinas Setempat</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/d1.jpeg') }}" class="img-fluid" alt="Kegiatan 1">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/d2.jpeg') }}" class="img-fluid" alt="Kegiatan 2">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='images/d3.jpeg') }}" class="img-fluid" alt="Kegiatan 3">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}S

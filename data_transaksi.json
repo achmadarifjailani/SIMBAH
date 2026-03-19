@@ -1,0 +1,74 @@
+[
+    {
+        "nama": "pijay",
+        "barang": "botol aqua",
+        "berat": 3.0,
+        "harga": 1500.0,
+        "total": 4500.0,
+        "hari": "Senin",
+        "tanggal": 1,
+        "bulan": "Maret",
+        "tahun": 2026,
+        "waktu": "15:57"
+    },
+    {
+        "nama": "pijay",
+        "barang": "kardus",
+        "berat": 5.0,
+        "harga": 2000.0,
+        "total": 10000.0,
+        "hari": "Senin",
+        "tanggal": 1,
+        "bulan": "Maret",
+        "tahun": 2026,
+        "waktu": "15:57"
+    },
+    {
+        "nama": "pijay",
+        "barang": "besi",
+        "berat": 9.0,
+        "harga": 6000.0,
+        "total": 54000.0,
+        "hari": "Senin",
+        "tanggal": 1,
+        "bulan": "Maret",
+        "tahun": 2026,
+        "waktu": "15:57"
+    },
+    {
+        "nama": "agus",
+        "barang": "botol aqua",
+        "berat": 3.0,
+        "harga": 1500.0,
+        "total": 4500.0,
+        "hari": "Senin",
+        "tanggal": 2,
+        "bulan": "Maret",
+        "tahun": 2026,
+        "waktu": "11:01"
+    },
+    {
+        "nama": "agus",
+        "barang": "kardus",
+        "berat": 5.0,
+        "harga": 2000.0,
+        "total": 10000.0,
+        "hari": "Senin",
+        "tanggal": 2,
+        "bulan": "Maret",
+        "tahun": 2026,
+        "waktu": "11:01"
+    },
+    {
+        "nama": "agus",
+        "barang": "besi",
+        "berat": 9.0,
+        "harga": 6000.0,
+        "total": 54000.0,
+        "hari": "Senin",
+        "tanggal": 2,
+        "bulan": "Maret",
+        "tahun": 2026,
+        "waktu": "11:01"
+    }
+]

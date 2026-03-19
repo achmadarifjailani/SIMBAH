@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center align-items-stretch shadow-lg rounded-5 overflow-hidden bg-white" style="min-height: 500px; border-radius: 40px !important;">
+        
+        <div class="col-md-6 p-5 d-flex flex-column justify-content-center" style="background-color: #f0fdf4;">
+            <div class="d-flex align-items-center mb-4">
+                <img src="{{ url_for('static', filename='images/logo simbah.jpg') }}" alt="Logo" width="80" class="me-3">
+                <div>
+                    <h5 class="mb-0 text-success fw-bold">SIMBAH</h5>
+                    <p class="small text-muted mb-0">Sistem Informasi Sampah</p>
+                </div>
+            </div>
+            
+            <h2 class="fw-black text-success mb-4" style="font-size: 2.5rem; line-height: 1.2;">
+                AYO, TUKARKAN SAMPAH MU MENJADI UANG!
+            </h2>
+            
+            <div class="rounded-4 overflow-hidden shadow-sm mt-2">
+                <img src="{{ url_for('static', filename='images/bg.jpeg') }}" class="img-fluid" alt="Kegiatan Bank Sampah">
+            </div>
+        </div>
+
+        <div class="col-md-6 p-5 text-white d-flex flex-column justify-content-center" style="background-color: #32cd32;">
+            <form method="POST" class="px-lg-4">
+                <div class="mb-4">
+                    <label for="username" class="form-label fw-bold h5">USERNAME</label>
+                    <input type="text" class="form-control form-control-lg border-0 rounded-0" id="username" name="username" required style="height: 60px;">
+                </div>
+                <div class="mb-5">
+                    <label for="password" class="form-label fw-bold h5">PASSWORD</label>
+                    <input type="password" class="form-control form-control-lg border-0 rounded-0" id="password" name="password" required style="height: 60px;">
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-lg fw-bold text-white px-5 py-3 shadow-sm" 
+                            style="background-color: #b08282; border-radius: 0; min-width: 200px;">
+                        MASUK
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

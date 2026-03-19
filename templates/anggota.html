@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center text-simbah mb-4">Pengurus Bank Sampah</h2>
+    <div class="row justify-content-center g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card profile-card text-center">
+<img src="{{ url_for('static', filename='images/latifah.png') }}">
+                <div class="card-body">
+                    <h5 class="card-title">Kak Latifah</h5>
+                    <p class="text-simbah fw-bold">PENDAMPING</p>
+                    <p class="card-text">Berpengalaman dalam pengelolaan bank sampah sejak 2025. Aktif dalam kegiatan lingkungan.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card profile-card text-center">
+<img src="{{ url_for('static', filename='images/mela.png') }}">                <div class="card-body">
+                    <h5 class="card-title">Kak Mela</h5>
+                    <p class="text-simbah fw-bold">KETUA BANK SAMPAH PELANGI</p>
+                    <p class="card-text">Bertanggung jawab dalam pendampingan masyarakat dan edukasi pemilahan sampah.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold text-simbah">Mengapa Memilih SIMBAH?</h1>
+            <p class="lead">Platform digital untuk mengelola bank sampah dengan mudah, transparan, dan profesional.</p>
+        </div>
+        <div class="col-lg-6">
+            <img src="{{ url_for('static', filename='images/bg.jpeg') }}" class="img-fluid rounded shadow" alt="Ilustrasi">
+        </div>
+    </div>
+
+    <!-- Fitur Cards -->
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card feature-card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-tags fa-3x text-simbah mb-3"></i>
+                    <h5 class="card-title">Harga Terbaik</h5>
+                    <p class="card-text">Harga beli sampah kompetitif dan menguntungkan masyarakat.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card feature-card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-handshake fa-3x text-simbah mb-3"></i>
+                    <h5 class="card-title">Terpercaya & Profesional</h5>
+                    <p class="card-text">Dikelola oleh tim berpengalaman dan terpercaya.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card feature-card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-leaf fa-3x text-simbah mb-3"></i>
+                    <h5 class="card-title">Ramah Lingkungan</h5>
+                    <p class="card-text">Mendukung program daur ulang dan kebersihan lingkungan.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card feature-card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-rocket fa-3x text-simbah mb-3"></i>
+                    <h5 class="card-title">Cepat & Efisien</h5>
+                    <p class="card-text">Proses pencatatan dan pelaporan yang cepat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
