@@ -2,82 +2,96 @@
 {% block content %}
 <div class="container my-5">
     <h2 class="text-simbah mb-4">Dashboard Admin</h2>
-    <div class="d-flex justify-content-between mb-3">
-    <div class="d-flex gap-2">
-       <div class="row mb-4">
-    <div class="col-12 mb-2">
-        <a href="{{ url_for('input_data') }}" class="btn btn-simbah w-100 py-3 shadow-sm">
-            <i class="fas fa-plus"></i> Input Transaksi Baru
-        </a>
-    </div>
     
-    <div class="col-12 mb-2">
-        <form action="{{ url_for('delete_all_transactions') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus SEMUA data?');">
-            <button type="submit" class="btn btn-danger w-100 py-2 shadow-sm">
-                <i class="fas fa-trash-sweep"></i> Hapus Semua Laporan
-            </button>
-        </form>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="mb-2">
+                <a href="{{ url_for('input_data') }}" class="btn btn-simbah w-100 py-3 shadow-sm">
+                    <i class="fas fa-plus"></i> Input Transaksi Baru
+                </a>
+            </div>
+            <div class="mb-2">
+                <form action="{{ url_for('delete_all_transactions') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus SEMUA data?');">
+                    <button type="submit" class="btn btn-danger w-100 py-2 shadow-sm">
+                        <i class="fas fa-trash-sweep"></i> Hapus Semua Laporan
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-8 d-flex align-items-start justify-content-end">
+            <form method="POST" action="{{ url_for('generate_laporan') }}" class="d-flex shadow-sm p-3 bg-light rounded">
+                <select name="bulan" class="form-select me-2" required>
+                    <option value="">Pilih Bulan</option>
+                    <option value="Januari">Januari</option>
+                    <option value="Februari">Februari</option>
+                    <option value="Maret">Maret</option>
+                    <option value="April">April</option>
+                    <option value="Mei">Mei</option>
+                    <option value="Juni">Juni</option>
+                    <option value="Juli">Juli</option>
+                    <option value="Agustus">Agustus</option>
+                    <option value="September">September</option>
+                    <option value="Oktober">Oktober</option>
+                    <option value="November">November</option>
+                    <option value="Desember">Desember</option>
+                </select>
+                <input type="number" name="tahun" class="form-control me-2" placeholder="Tahun" value="2026" required>
+                <button type="submit" class="btn btn-success text-nowrap">
+                    <i class="fas fa-file-pdf"></i> Generate PDF
+                </button>
+            </form>
+        </div>
     </div>
-</div>
-        <!-- Form Generate Laporan -->
-        <form method="POST" action="{{ url_for('generate_laporan') }}" class="d-flex">
-            <select name="bulan" class="form-select me-2" required>
-                <option value="">Pilih Bulan</option>
-                <option value="Januari">Januari</option>
-                <option value="Februari">Februari</option>
-                <option value="Maret">Maret</option>
-                <option value="April">April</option>
-                <option value="Mei">Mei</option>
-                <option value="Juni">Juni</option>
-                <option value="Juli">Juli</option>
-                <option value="Agustus">Agustus</option>
-                <option value="September">September</option>
-                <option value="Oktober">Oktober</option>
-                <option value="November">November</option>
-                <option value="Desember">Desember</option>
-            </select>
-            <input type="number" name="tahun" class="form-control me-2" placeholder="Tahun" value="2026" required>
-            <button type="submit" class="btn btn-success"><i class="fas fa-file-pdf"></i> Generate PDF</button>
-        </form>
-    </div>
-<table class="table table-bordered table-hover">
-    <thead class="table-success">
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Barang</th>
-            <th>Berat</th>
-            <th>Harga/Kg</th>
-            <th>Total</th>
-            <th>Hari</th>
-            <th>Tgl</th>
-            <th>Bulan</th>
-            <th>Tahun</th>
-            <th>Waktu</th>
-            <th>Aksi</th> </tr>
-    <tbody>
-    {% set ns = namespace(last_name='', last_time='') %}
+
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered table-hover">
+            <thead class="table-success text-center">
+                <tr>
+                    <th>No</th>
+                    <th>Nama & Pembayaran</th>
+                    <th>Barang</th>
+                    <th>Berat</th>
+                    <th>Harga/Kg</th>
+                    <th>Total</th>
+                    <th>Hari</th>
+                    <th>Tgl</th>
+                    <th>Bulan</th>
+                    <th>Tahun</th>
+                    <th>Waktu</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% set ns = namespace(last_name='', last_time='', last_tgl='', display_no=0) %}
     {% for t in transactions %}
     <tr>
-        {# Jika Nama ATAU Waktu berbeda dengan baris sebelumnya, tampilkan data utama #}
-        {% if t.nama != ns.last_name or t.waktu != ns.last_time %}
-            <td>{{ loop.index }}</td>
-            <td>{{ t.nama }}</td>
+        {# Cek Nama, Waktu, DAN Tanggal untuk menentukan apakah ini transaksi baru #}
+        {% if t.nama != ns.last_name or t.waktu != ns.last_time or t.tanggal != ns.last_tgl %}
+            {% set ns.display_no = ns.display_no + 1 %}
+            <td class="text-center">{{ ns.display_no }}</td>
+            <td>
+                <strong>{{ t.nama }}</strong><br>
+                <small class="badge bg-info text-dark">
+                    {{ t.metode_bayar if t.metode_bayar else 'Tunai' }}: {{ t.nomor_pembayaran if t.nomor_pembayaran else '-' }}
+                </small>
+            </td>
             
             {% set ns.last_name = t.nama %}
             {% set ns.last_time = t.waktu %}
+            {% set ns.last_tgl = t.tanggal %}
             
-            <td>{{ t.barang }}</td>
-            <td>{{ t.berat }}</td>
-            <td>Rp {{ t.harga | format_number }}</td>
-            <td>Rp {{ t.total | format_number }}</td>
+            <td class="text-center">{{ t.barang }}</td>
+            <td class="text-center">{{ t.berat }}</td>
+            <td class="text-end">Rp {{ t.harga | format_number }}</td>
+            <td class="text-end fw-bold">Rp {{ t.total | format_number }}</td>
 
-            <td>{{ t.hari }}</td>
-            <td>{{ t.tanggal }}</td>
-            <td>{{ t.bulan }}</td>
-            <td>{{ t.tahun }}</td>
-            <td>{{ t.waktu }}</td>
-            <td>
+            <td class="text-center">{{ t.hari }}</td>
+            <td class="text-center">{{ t.tanggal }}</td>
+            <td class="text-center">{{ t.bulan }}</td>
+            <td class="text-center">{{ t.tahun }}</td>
+            <td class="text-center">{{ t.waktu }}</td>
+            <td class="text-center">
                 <form action="{{ url_for('delete_transaction') }}" method="POST">
                     <input type="hidden" name="nama" value="{{ t.nama }}">
                     <input type="hidden" name="waktu" value="{{ t.waktu }}">
@@ -87,23 +101,21 @@
                 </form>
             </td>
         {% else %}
-            {# Baris tambahan untuk barang dalam grup yang sama #}
+            {# Ini untuk baris barang ke-2, ke-3, dst dalam SATU transaksi yang sama #}
             <td></td>
             <td></td>
-            <td>{{ t.barang }}</td>
-            <td>{{ t.berat }}</td>
-            <td>Rp {{ t.harga | format_number }}</td>
-            <td>Rp {{ t.total | format_number }}</td>
-
-            {# Kosongkan sisa kolom agar terlihat menyatu #}
+            <td class="text-center">{{ t.barang }}</td>
+            <td class="text-center">{{ t.berat }}</td>
+            <td class="text-end">Rp {{ t.harga | format_number }}</td>
+            <td class="text-end fw-bold">Rp {{ t.total | format_number }}</td>
             <td></td><td></td><td></td><td></td><td></td><td></td>
         {% endif %}
     </tr>
     {% else %}
-    <tr><td colspan="12" class="text-center">Belum ada transaksi.</td></tr>
+    <tr><td colspan="12" class="text-center py-4">Belum ada transaksi.</td></tr>
     {% endfor %}
 </tbody>
-</table>
+        </table>
     </div>
 </div>
 {% endblock %}
