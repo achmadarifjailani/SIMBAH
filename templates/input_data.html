@@ -13,6 +13,21 @@
                     <label class="form-label fw-bold">Waktu</label>
                     <input type="time" class="form-control" name="waktu" required>
                 </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Metode Pembayaran</label>
+                    <select class="form-select" name="metode_bayar" required>
+                        <option value="Tunai">Tunai (Cash)</option>
+                        <option value="Transfer Bank">Transfer Bank (BCA/Mandiri/BRI)</option>
+                        <option value="DANA">DANA</option>
+                        <option value="OVO">OVO</option>
+                        <option value="Gopay">Gopay</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">No. Rekening / HP Nasabah</label>
+                    <input type="text" class="form-control" name="nomor_pembayaran" placeholder="Kosongkan jika tunai">
+                </div>
             </div>
 
             <div id="itemContainer">
